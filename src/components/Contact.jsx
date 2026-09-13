@@ -95,8 +95,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Mail Me</p>
-                    <a href="mailto:mdlimonislam000000@gmail.com" className="text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-cyan-500 transition-colors">
-                      mdlimonislam000000@gmail.com
+                    <a href="mailto:limon.mia.dev@gmail.com" className="text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-cyan-500 transition-colors">
+                      limon.mia.dev@gmail.com
                     </a>
                   </div>
                 </motion.div>

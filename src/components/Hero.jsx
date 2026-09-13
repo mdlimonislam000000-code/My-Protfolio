@@ -1,15 +1,26 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  HiDownload,
   HiArrowRight,
   HiCheckCircle,
   HiCode,
 } from "react-icons/hi";
 import { FaGithub, FaLinkedin, FaFacebook, FaTwitter } from "react-icons/fa6";
+import { RiEyeCloseFill } from "react-icons/ri";
+import { FaEye } from "react-icons/fa";
 
 const Hero = () => {
+  // চোখ বন্ধ এবং খোলার লুপ স্টেট
+  const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsOpen((prev) => !prev);
+    }, 2000); // প্রতি ২ সেকেন্ড পর পর চোখ বন্ধ ও খুলবে
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="home"
@@ -79,7 +90,12 @@ const Hero = () => {
               className="flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
             >
               <span>View Resume</span>
-              <HiDownload size={20} className="animate-bounce" />
+              <motion.div
+                animate={{ y: [-3, 3, -3] }}
+                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+              >
+                {isOpen ? <FaEye  size={20} /> : <RiEyeCloseFill size={20} />}
+              </motion.div>
             </a>
 
             <a
