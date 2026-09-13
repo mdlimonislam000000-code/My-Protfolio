@@ -9,7 +9,7 @@ const educationData = [
     degree: 'Diploma in Engineering in Computer Science & Technology (CST)',
     institution: 'Kishoreganj Polytechnic Institute',
     address: 'Korimganj, Kishoreganj, Bangladesh',
-    duration: '2022 - 2027',
+    duration: '2022 - 2023 Session',
     description: 'Focusing on core programming concepts, data structures, algorithms, and modern web development technologies.',
     status: '6th Semester (Running)',
   },
