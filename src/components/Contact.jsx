@@ -14,8 +14,8 @@ const Contact = () => {
 
     const formData = new FormData(event.target);
 
-    // নিচের এক্সেস কি-এর জায়গায় আপনার Web3Forms Access Key বসিয়ে দেবেন
-    formData.append('access_key', 'YOUR_WEB3FORMS_ACCESS_KEY_HERE');
+    // আপনার Web3Forms Access Key এখানে বসানো আছে
+    formData.append('access_key', 'ebf1ede3-be35-463b-b870-2450264aa03b');
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -60,7 +60,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Contact Info (Col: 5) - Unique Glow & Hover Effect */}
+          {/* Contact Info */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -69,7 +69,6 @@ const Contact = () => {
             whileHover={{ scale: 1.01 }}
             className="lg:col-span-5 relative rounded-3xl p-[2px] overflow-hidden group shadow-md hover:shadow-cyan-500/10 transition-all duration-300"
           >
-            {/* Rotating Glow Border on Hover */}
             <div className="absolute inset-[-50%] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none overflow-hidden">
               <motion.div
                 animate={{ rotate: 360 }}
@@ -124,7 +123,7 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Contact Form (Col: 7) - Interactive Focus & Button Pulse Animation */}
+          {/* Contact Form */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}

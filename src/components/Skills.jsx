@@ -1,44 +1,43 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaNodeJs } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiExpress, SiMongodb, SiStripe, SiFirebase, SiVite } from 'react-icons/si';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaNodeJs, FaShieldAlt, FaKey } from 'react-icons/fa';
+import { SiTailwindcss, SiNextdotjs, SiExpress, SiMongodb, SiVite } from 'react-icons/si';
 
 const skillsData = [
   {
     category: 'Frontend Development',
     skills: [
-      { name: 'HTML5', icon: <FaHtml5 className="text-orange-500 text-3xl" />, level: '95%' },
-      { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500 text-3xl" />, level: '90%' },
-      { name: 'JavaScript (ES6+)', icon: <FaJs className="text-yellow-400 text-3xl" />, level: '85%' },
-      { name: 'React.js', icon: <FaReact className="text-cyan-400 text-3xl" />, level: '88%' },
-      { name: 'Next.js', icon: <SiNextdotjs className="text-slate-900 dark:text-white text-3xl" />, level: '75%' },
+      { name: 'HTML5', icon: <FaHtml5 className="text-orange-500 text-3xl" /> },
+      { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500 text-3xl" /> },
+      { name: 'JavaScript (ES6+)', icon: <FaJs className="text-yellow-400 text-3xl" /> },
+      { name: 'React.js', icon: <FaReact className="text-cyan-400 text-3xl" /> },
+      { name: 'Next.js', icon: <SiNextdotjs className="text-slate-900 dark:text-white text-3xl" /> },
     ],
   },
   {
     category: 'Backend & Database',
     skills: [
-      { name: 'Node.js', icon: <FaNodeJs className="text-green-500 text-3xl" />, level: '70%' },
-      { name: 'Express.js', icon: <SiExpress className="text-slate-700 dark:text-white text-3xl" />, level: '75%' },
-      { name: 'MongoDB', icon: <SiMongodb className="text-emerald-500 text-3xl" />, level: '70%' },
-      { name: 'Firebase', icon: <SiFirebase className="text-amber-500 text-3xl" />, level: '70%' },
+      { name: 'Node.js', icon: <FaNodeJs className="text-green-500 text-3xl" /> },
+      { name: 'Express.js', icon: <SiExpress className="text-slate-700 dark:text-white text-3xl" /> },
+      { name: 'MongoDB', icon: <SiMongodb className="text-emerald-500 text-3xl" /> },
     ],
   },
   {
     category: 'Styling & UI Libraries',
     skills: [
-      { name: 'Tailwind CSS v4', icon: <SiTailwindcss className="text-cyan-500 text-3xl" />, level: '90%' },
-      { name: 'DaisyUI', icon: <FaReact className="text-primary text-3xl" />, level: '85%' },
-      { name: 'Shadcn UI', icon: <FaReact className="text-slate-800 dark:text-white text-3xl" />, level: '80%' },
-      { name: 'HeroUI', icon: <FaReact className="text-purple-500 text-3xl" />, level: '80%' },
+      { name: 'Tailwind CSS v4', icon: <SiTailwindcss className="text-cyan-500 text-3xl" /> },
+      { name: 'DaisyUI', icon: <FaReact className="text-primary text-3xl" /> },
+      { name: 'HeroUI', icon: <FaReact className="text-purple-500 text-3xl" /> },
     ],
   },
   {
-    category: 'Payment & Tools',
+    category: 'Auth & Tools',
     skills: [
-      { name: 'Stripe Payment', icon: <SiStripe className="text-indigo-500 text-3xl" />, level: '75%' },
-      { name: 'Git & GitHub', icon: <FaGitAlt className="text-red-500 text-3xl" />, level: '80%' },
-      { name: 'Vite', icon: <SiVite className="text-purple-500 text-3xl" />, level: '85%' },
+      { name: 'JWT (JSON Web Token)', icon: <FaKey className="text-amber-500 text-3xl" /> },
+      { name: 'BetterAuth', icon: <FaShieldAlt className="text-cyan-500 text-3xl" /> },
+      { name: 'Git & GitHub', icon: <FaGitAlt className="text-red-500 text-3xl" /> },
+      { name: 'Vite', icon: <SiVite className="text-purple-500 text-3xl" /> },
     ],
   },
 ];
@@ -95,7 +94,6 @@ const Skills = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {skillsData.map((categoryGroup, index) => {
-            // বিভিন্ন কার্ডের জন্য আলাদা গ্রাস/রটেটিং কালার শেড সেট করা
             const gradients = [
               "bg-[conic-gradient(from_0deg,transparent_0_270deg,#06b6d4_360deg)]",
               "bg-[conic-gradient(from_0deg,transparent_0_270deg,#10b981_360deg)]",
@@ -127,18 +125,13 @@ const Skills = () => {
                       {categoryGroup.skills.map((skill) => (
                         <div 
                           key={skill.name}
-                          className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 hover:scale-[1.02] transition-transform duration-200"
+                          className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 hover:scale-[1.02] transition-transform duration-200"
                         >
-                          <div className="flex items-center gap-3">
-                            <div className="p-2 rounded-xl bg-white dark:bg-slate-900 shadow-xs">
-                              {skill.icon}
-                            </div>
-                            <span className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
-                              {skill.name}
-                            </span>
+                          <div className="p-2 rounded-xl bg-white dark:bg-slate-900 shadow-xs">
+                            {skill.icon}
                           </div>
-                          <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-950/50 px-2 py-0.5 rounded-lg">
-                            {skill.level}
+                          <span className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
+                            {skill.name}
                           </span>
                         </div>
                       ))}
