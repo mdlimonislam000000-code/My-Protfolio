@@ -6,6 +6,15 @@ import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'reac
 const projectsData = [
   {
     id: 1,
+    title: 'MediCare Connect',
+    description: 'MediCare Connect is a comprehensive full-stack healthcare platform that enables patients and doctors to easily manage appointments and schedules. Built with Next.js, Node.js, Express, and MongoDB, it features secure authentication via BetterAuth, Stripe payment gateway integration, an admin panel for user account management, and role-based route protection.',
+    image: '/images/medicareConnect.jpg.png',
+    tags: ['NextJs', 'Tailwind CSS', 'JavaScript','HeroUi','MongoDb'],
+    liveLink: 'https://medicare-connect-rose.vercel.app',
+    githubLink: 'https://github.com/mdlimonislam000000-code/MediCare--Client',
+  },
+  {
+    id: 2,
     title: 'docAppointment - Doctor Booking System',
     description: 'A modern healthcare web application that allows users to easily search for doctors, view their specializations and availability, and seamlessly book appointments with a clean and responsive user interface.',
     image: '/images/project1.jpg.png',
@@ -14,7 +23,7 @@ const projectsData = [
     githubLink: 'https://github.com/mdlimonislam000000-code/DocAppoint',
   },
   {
-    id: 2,
+    id: 3,
     title: 'SunCart - Summer E-Commerce Platform',
     description: 'A vibrant and modern e-commerce web application dedicated to summer essentials, featuring product filtering, a seamless shopping cart experience, and a fully responsive user interface.',
     image: '/images/project2.jpg.png',
@@ -23,7 +32,7 @@ const projectsData = [
     githubLink: 'https://github.com/mdlimonislam000000-code/Sun-Cart',
   },
   {
-    id: 3,
+    id: 4,
     title: 'KeenKeeper - Friend & Contact Management App',
     description: 'A Static web application designed to manage friend connections, track communication statuses (Call, Text, Video), and easily stay in touch with a clean and interactive user interface.',
     image: '/images/project3.jpg.png',
@@ -32,7 +41,7 @@ const projectsData = [
     githubLink: 'https://github.com/mdlimonislam000000-code/Keen-Keeper',
   },
   {
-    id: 4,
+    id: 5,
     title: 'GitHub Issues Tracker - Issue Management App',
     description: 'A simulated issue tracking web application inspired by GitHub, allowing users to view, manage, and filter repository issues by status (All, Open, Closed) with a clean and interactive interface.',
     image: '/images/project4.jpg.png',
@@ -41,7 +50,7 @@ const projectsData = [
     githubLink: 'https://github.com/mdlimonislam000000-code/GitHub-Issues-Tracker',
   },
   {
-    id: 5,
+    id: 6,
     title: 'digiTools - Digital Tools Marketplace',
     description: 'A modern e-commerce web platform designed for buying and exploring various digital tools, featuring seamless category filtering, interactive product cards, and a fully responsive UI.',
     image: '/images/project5.jpg.png',
