@@ -11,7 +11,7 @@ const educationData = [
     address: 'Korimganj, Kishoreganj, Bangladesh',
     duration: '2022 - Present',
     description: 'Focusing on core programming concepts, data structures, algorithms, and modern web development technologies.',
-    status: '5th Semester (Running)',
+    status: '6th Semester (Running)',
   },
   {
     id: 2,
