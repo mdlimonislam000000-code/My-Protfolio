@@ -4,12 +4,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const projectsData = [
-  {
+ {
     id: 1,
     title: 'Manush Manuser Jonno - Blood Donate Society',
-    description: 'Manush Manuser Jonno is a comprehensive full-stack blood donation and emergency support platform designed to connect blood seekers with verified donors instantly. Built with Next.js and MongoDB, it features secure Google authentication via BetterAuth, email verification code sending for enhanced user security, an advanced donor search and filtering system, emergency blood request management, and role-based route protection for users and admins. The application boasts a stunning, modern dark/light UI with a fully responsive design optimized to deliver a seamless and engaging experience across all devices.',
+    description: 'A full-stack blood donation platform connecting seekers with verified donors instantly. Features secure Google auth, email verification via Nodemailer, emergency requests, donor search/filtering, and role-based access control with a fully responsive dark/light UI.',
     image: '/images/MMJ.admin.dashboard.png',
-    tags: ['Next.js', 'Tailwind CSS', 'JavaScript', 'DaisyUI', 'MongoDB', 'BetterAuth', 'Nodemailer'],
+    tags: ['Next.js', 'Tailwind CSS', 'JavaScript', 'HeroUi', 'MongoDB', 'BetterAuth', 'Nodemailer'],
     liveLink: 'https://mmj-blood-bank.vercel.app',
     githubLink: 'https://github.com/mdlimonislam000000-code/Blood-Donate-Client-',
   },
