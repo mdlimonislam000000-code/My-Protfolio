@@ -1,51 +1,85 @@
 'use client';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaNodeJs, FaShieldAlt, FaKey, FaTimes, FaThLarge } from 'react-icons/fa';
-import { SiTailwindcss, SiNextdotjs, SiExpress, SiMongodb, SiVite } from 'react-icons/si';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaNodeJs, FaShieldAlt, FaKey, FaTimes, FaThLarge, FaCode, FaServer, FaTools } from 'react-icons/fa';
+import { SiTailwindcss, SiNextdotjs, SiExpress, SiMongodb, SiVite, SiTypescript, SiStripe, SiVercel, SiNetlify } from 'react-icons/si';
+import { TbApi } from 'react-icons/tb';
 
+// Ticker Row 1 Skills
 const row1Skills = [
-  { name: 'HTML5', icon: <FaHtml5 className="text-orange-500 text-xl sm:text-3xl" /> },
-  { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500 text-xl sm:text-3xl" /> },
-  { name: 'JavaScript', icon: <FaJs className="text-yellow-400 text-xl sm:text-3xl" /> },
-  { name: 'React.js', icon: <FaReact className="text-cyan-400 text-xl sm:text-3xl" /> },
-  { name: 'Next.js', icon: <SiNextdotjs className="text-slate-900 dark:text-white text-xl sm:text-3xl" /> },
+  { name: 'JavaScript (ES6+)', icon: <FaJs className="text-yellow-400 text-xl sm:text-3xl" /> },
+  { name: 'TypeScript', icon: <SiTypescript className="text-blue-500 text-xl sm:text-3xl" /> },
+  { name: 'ReactJs', icon: <FaReact className="text-cyan-400 text-xl sm:text-3xl" /> },
+  { name: 'NextJs', icon: <SiNextdotjs className="text-slate-900 dark:text-white text-xl sm:text-3xl" /> },
+  { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-cyan-500 text-xl sm:text-3xl" /> },
+  { name: 'Node.js', icon: <FaNodeJs className="text-green-500 text-xl sm:text-3xl" /> },
 ];
 
+// Ticker Row 2 Skills
 const row2Skills = [
-  { name: 'Node.js', icon: <FaNodeJs className="text-green-500 text-xl sm:text-3xl" /> },
   { name: 'Express.js', icon: <SiExpress className="text-slate-700 dark:text-white text-xl sm:text-3xl" /> },
   { name: 'MongoDB', icon: <SiMongodb className="text-emerald-500 text-xl sm:text-3xl" /> },
-  { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-cyan-500 text-xl sm:text-3xl" /> },
-  { name: 'DaisyUI', icon: <FaReact className="text-primary text-xl sm:text-3xl" /> },
-  { name: 'HeroUI', icon: <FaReact className="text-purple-500 text-xl sm:text-3xl" /> },
-  { name: 'JWT Token', icon: <FaKey className="text-amber-500 text-xl sm:text-3xl" /> },
-  { name: 'BetterAuth', icon: <FaShieldAlt className="text-cyan-500 text-xl sm:text-3xl" /> },
+  { name: 'REST APIs', icon: <TbApi className="text-indigo-500 text-xl sm:text-3xl" /> },
+  { name: 'Stripe', icon: <SiStripe className="text-violet-500 text-xl sm:text-3xl" /> },
+  { name: 'Nodemailer', icon: <FaShieldAlt className="text-amber-500 text-xl sm:text-3xl" /> },
   { name: 'Git & GitHub', icon: <FaGitAlt className="text-red-500 text-xl sm:text-3xl" /> },
-  { name: 'Vite', icon: <SiVite className="text-purple-500 text-xl sm:text-3xl" /> },
 ];
 
-// Modal er jonno 2 vag data
+// Modal Categories Data
 const frontendSkills = [
+  { name: 'JavaScript (ES6+)', icon: <FaJs className="text-yellow-400 text-2xl" /> },
+  { name: 'TypeScript', icon: <SiTypescript className="text-blue-500 text-2xl" /> },
+  { name: 'ReactJs', icon: <FaReact className="text-cyan-400 text-2xl" /> },
+  { name: 'NextJs', icon: <SiNextdotjs className="text-slate-900 dark:text-white text-2xl" /> },
   { name: 'HTML5', icon: <FaHtml5 className="text-orange-500 text-2xl" /> },
   { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500 text-2xl" /> },
-  { name: 'JavaScript (ES6+)', icon: <FaJs className="text-yellow-400 text-2xl" /> },
-  { name: 'React.js', icon: <FaReact className="text-cyan-400 text-2xl" /> },
-  { name: 'Next.js', icon: <SiNextdotjs className="text-slate-900 dark:text-white text-2xl" /> },
+];
+
+const stylingUiSkills = [
   { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-cyan-500 text-2xl" /> },
   { name: 'DaisyUI', icon: <FaReact className="text-primary text-2xl" /> },
   { name: 'HeroUI', icon: <FaReact className="text-purple-500 text-2xl" /> },
+  { name: 'Framer Motion', icon: <FaReact className="text-pink-500 text-2xl" /> },
 ];
 
 const backendAuthSkills = [
   { name: 'Node.js', icon: <FaNodeJs className="text-green-500 text-2xl" /> },
   { name: 'Express.js', icon: <SiExpress className="text-slate-700 dark:text-white text-2xl" /> },
   { name: 'MongoDB', icon: <SiMongodb className="text-emerald-500 text-2xl" /> },
+  { name: 'REST APIs', icon: <TbApi className="text-indigo-500 text-2xl" /> },
+  { name: 'Stripe', icon: <SiStripe className="text-violet-500 text-2xl" /> },
+  { name: 'Nodemailer', icon: <FaShieldAlt className="text-amber-500 text-2xl" /> },
   { name: 'JWT Token', icon: <FaKey className="text-amber-500 text-2xl" /> },
   { name: 'BetterAuth', icon: <FaShieldAlt className="text-cyan-500 text-2xl" /> },
-  { name: 'Git & GitHub', icon: <FaGitAlt className="text-red-500 text-2xl" /> },
-  { name: 'Vite', icon: <SiVite className="text-purple-500 text-2xl" /> },
 ];
+
+const toolsDevSkills = [
+  { name: 'Git', icon: <FaGitAlt className="text-red-500 text-2xl" /> },
+  { name: 'GitHub', icon: <FaGitAlt className="text-slate-800 dark:text-white text-2xl" /> },
+  { name: 'VS Code', icon: <FaCode className="text-blue-400 text-2xl" /> },
+  { name: 'Vite', icon: <SiVite className="text-purple-500 text-2xl" /> },
+  { name: 'Vercel', icon: <SiVercel className="text-slate-900 dark:text-white text-2xl" /> },
+  { name: 'Netlify', icon: <SiNetlify className="text-teal-500 text-2xl" /> },
+];
+
+// Modal item drop animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08 }
+  }
+};
+
+const itemDropVariants = {
+  hidden: { opacity: 0, y: -40, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { type: "spring", stiffness: 200, damping: 15 }
+  }
+};
 
 const Skills = () => {
   const [isHovered1, setIsHovered1] = useState(false);
@@ -88,11 +122,11 @@ const Skills = () => {
       </div>
 
       <div className="relative w-full flex flex-col gap-4 overflow-hidden py-2">
-        {/* Gradient Shadow Effect on Left & Right Sides */}
+        {/* Gradient Shadow Effect */}
         <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Right to Left (Hover Pause Enabled) */}
+        {/* Row 1: Right to Left (Independent Hover Pause) */}
         <div 
           className="flex overflow-x-hidden"
           onMouseEnter={() => setIsHovered1(true)}
@@ -120,7 +154,7 @@ const Skills = () => {
           </motion.div>
         </div>
 
-        {/* Row 2: Left to Right (Hover Pause Enabled) */}
+        {/* Row 2: Left to Right (Independent Hover Pause) */}
         <div 
           className="flex overflow-x-hidden"
           onMouseEnter={() => setIsHovered2(true)}
@@ -150,7 +184,7 @@ const Skills = () => {
 
       </div>
 
-      {/* View All Skills Modal with Animation & Sticky Header */}
+      {/* View All Skills Modal */}
       <AnimatePresence>
         {showAllModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
@@ -174,22 +208,28 @@ const Skills = () => {
                 </button>
               </div>
 
-              {/* Modal Scrollable Body (2 Divided Sections) */}
-              <div className="p-6 sm:p-8 overflow-y-auto space-y-8">
+              {/* Modal Body with Drop Animation & 2/Multi-divisions */}
+              <motion.div 
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="p-6 sm:p-8 overflow-y-auto space-y-8"
+              >
                 
-                {/* 1. Frontend & Styling Section */}
+                {/* Section 1: Frontend & Styling */}
                 <div>
                   <h4 className="text-lg font-bold text-cyan-500 mb-4 flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 inline-block animate-pulse"></span>
-                    Frontend & Styling
+                    Frontend & Styling Libraries
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    {frontendSkills.map((skill, index) => (
+                    {[...frontendSkills, ...stylingUiSkills].map((skill, index) => (
                       <motion.div 
                         key={index}
-                        whileHover={{ scale: 1.05, y: -3 }}
+                        variants={itemDropVariants}
+                        whileHover={{ scale: 1.05, y: -4, borderColor: '#06b6d4' }}
                         whileTap={{ scale: 0.97 }}
-                        className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 transition-all shadow-xs group cursor-pointer"
+                        className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 transition-all shadow-xs group cursor-pointer"
                       >
                         <div className="p-2 rounded-xl bg-white dark:bg-slate-900 shadow-xs group-hover:rotate-6 transition-transform">
                           {skill.icon}
@@ -202,22 +242,22 @@ const Skills = () => {
                   </div>
                 </div>
 
-                {/* Divider */}
                 <hr className="border-slate-200 dark:border-slate-800" />
 
-                {/* 2. Backend, Auth & Tools Section */}
+                {/* Section 2: Backend, Auth & Tools */}
                 <div>
                   <h4 className="text-lg font-bold text-emerald-500 mb-4 flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
-                    Backend, Auth & Tools
+                    Backend, Database, Auth & Tools
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    {backendAuthSkills.map((skill, index) => (
+                    {[...backendAuthSkills, ...toolsDevSkills].map((skill, index) => (
                       <motion.div 
                         key={index}
-                        whileHover={{ scale: 1.05, y: -3 }}
+                        variants={itemDropVariants}
+                        whileHover={{ scale: 1.05, y: -4, borderColor: '#10b981' }}
                         whileTap={{ scale: 0.97 }}
-                        className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all shadow-xs group cursor-pointer"
+                        className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 transition-all shadow-xs group cursor-pointer"
                       >
                         <div className="p-2 rounded-xl bg-white dark:bg-slate-900 shadow-xs group-hover:rotate-6 transition-transform">
                           {skill.icon}
@@ -230,7 +270,7 @@ const Skills = () => {
                   </div>
                 </div>
 
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         )}
