@@ -134,6 +134,28 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+      {/* Inline styles for Pure CSS Ticker Animation */}
+      <style jsx>{`
+        @keyframes scrollLeft {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes scrollRight {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0%); }
+        }
+        .animate-ticker-left {
+          display: flex;
+          width: max-content;
+          animation: scrollLeft 25s linear infinite;
+        }
+        .animate-ticker-right {
+          display: flex;
+          width: max-content;
+          animation: scrollRight 25s linear infinite;
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -172,13 +194,11 @@ const Skills = () => {
         <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Right to Left (Exact Pause & Resume) */}
+        {/* Row 1: Right to Left (Exact Pause & Resume using CSS Animation) */}
         <div className="flex overflow-x-hidden py-1">
-          <motion.div
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ x: { duration: 25, repeat: Infinity, ease: "linear" } }}
+          <div
+            className="animate-ticker-left gap-3 sm:gap-6 items-center flex-nowrap"
             style={{ animationPlayState: isHovered1 ? 'paused' : 'running' }}
-            className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap w-max"
           >
             {[...row1Skills, ...row1Skills].map((skill, index) => (
               <div
@@ -195,16 +215,14 @@ const Skills = () => {
                 </span>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        {/* Row 2: Left to Right (Exact Pause & Resume) */}
+        {/* Row 2: Left to Right (Exact Pause & Resume using CSS Animation) */}
         <div className="flex overflow-x-hidden py-1">
-          <motion.div
-            animate={{ x: ["-50%", "0%"] }}
-            transition={{ x: { duration: 25, repeat: Infinity, ease: "linear" } }}
+          <div
+            className="animate-ticker-right gap-3 sm:gap-6 items-center flex-nowrap"
             style={{ animationPlayState: isHovered2 ? 'paused' : 'running' }}
-            className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap w-max"
           >
             {[...row2Skills, ...row2Skills].map((skill, index) => (
               <div
@@ -221,7 +239,7 @@ const Skills = () => {
                 </span>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
       </div>
