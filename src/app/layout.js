@@ -88,7 +88,7 @@ export default function RootLayout({ children }) {
               initial={{ opacity: 0.7, scale: 1 }}
               animate={{ opacity: 0, scale: 0.1 }}
               transition={{ duration: 1.0 }}
-              className="absolute h-2 rounded-full bg-linear-to-r-to-r from-cyan-500 via-teal-400 to-indigo-500 blur-[0.5px]"
+              className="absolute h-2 rounded-full bg-gradient-to-r from-cyan-500 via-teal-400 to-indigo-500 blur-[0.5px]"
               style={{
                 left: `${trail.x}px`,
                 top: `${trail.y}px`,

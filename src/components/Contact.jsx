@@ -65,13 +65,13 @@ const Contact = () => {
             viewport={{ once: false }}
             transition={{ duration: 0.6 }}
             whileHover={{ scale: 1.01 }}
-            className="lg:col-span-5 relative rounded-3xl p-[2px] overflow-hidden group shadow-md hover:shadow-cyan-500/10 transition-all duration-300"
+            className="lg:col-span-5 relative rounded-3xl p-1 overflow-hidden group shadow-md hover:shadow-cyan-500/10 transition-all duration-300"
           >
             <div className="absolute inset-[-50%] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none overflow-hidden">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 bg-gradient-to-tr from-cyan-500 via-transparent to-transparent opacity-70"
+                className="absolute inset-0 bg-linear-to-tr from-cyan-500 via-transparent to-transparent opacity-70"
               />
             </div>
 
