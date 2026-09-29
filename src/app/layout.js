@@ -24,8 +24,7 @@ const poppins = Poppins({
 export default function RootLayout({ children }) {
   const [trails, setTrails] = useState([]);
   const [raindrops, setRaindrops] = useState([]);
-
-  // মাউস ট্রেইল (হোভার) ইফেক্ট
+// মাউস ট্রেইল (হোভার) ইফেক্ট
   useEffect(() => {
     const handleMouseMove = (e) => {
       const newPoint = {
@@ -43,13 +42,13 @@ export default function RootLayout({ children }) {
     };
   }, []);
 
-  // ব্যাকগ্রাউন্ডে বৃষ্টির ফোঁটা জেনারেট করার জন্য
+
   useEffect(() => {
     const drops = Array.from({ length: 25 }, (_, i) => ({
       id: i,
-      left: Math.random() * 100, // স্ক্রিনের উইডথ বরাবর রেন্ডম পজিশন
-      duration: Math.random() * 1.5 + 1.0, // পতনের গতি
-      delay: Math.random() * 2, // একেক ফোঁটা একেক সময় শুরু হবে
+      left: Math.random() * 100, 
+      duration: Math.random() * 1.5 + 1.0, 
+      delay: Math.random() * 2, 
     }));
     setRaindrops(drops);
   }, []);
@@ -61,7 +60,7 @@ export default function RootLayout({ children }) {
     >
       <body className={`${poppins.className} min-h-full flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 relative selection:bg-cyan-500 selection:text-white overflow-x-hidden`}>
         
-        {/* ব্যাকগ্রাউন্ডে সবসময় হালকা হালকা বৃষ্টির ফোঁটা পড়ার ইফেক্ট */}
+
         <div className="fixed inset-0 pointer-events-none z-40 overflow-hidden">
           {raindrops.map((drop) => (
             <motion.div
@@ -82,7 +81,6 @@ export default function RootLayout({ children }) {
           ))}
         </div>
 
-        {/* সার্কেল ছাড়া শুধু স্মুথ রঙিন ট্রেইল (আপনার আগের মাউস হোভার ইফেক্ট) */}
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
           {trails.map((trail, index) => (
             <motion.div
@@ -90,7 +88,7 @@ export default function RootLayout({ children }) {
               initial={{ opacity: 0.7, scale: 1 }}
               animate={{ opacity: 0, scale: 0.1 }}
               transition={{ duration: 1.0 }}
-              className="absolute h-2 rounded-full bg-gradient-to-r from-cyan-500 via-teal-400 to-indigo-500 blur-[0.5px]"
+              className="absolute h-2 rounded-full bg-linear-to-r-to-r from-cyan-500 via-teal-400 to-indigo-500 blur-[0.5px]"
               style={{
                 left: `${trail.x}px`,
                 top: `${trail.y}px`,

@@ -14,7 +14,6 @@ const Contact = () => {
 
     const formData = new FormData(event.target);
 
-    // আপনার Web3Forms Access Key এখানে বসানো আছে
     formData.append('access_key', 'ebf1ede3-be35-463b-b870-2450264aa03b');
 
     try {
@@ -42,7 +41,6 @@ const Contact = () => {
     <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
