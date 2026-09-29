@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaNodeJs, FaShieldAlt, FaKey, FaTimes, FaThLarge, FaCode, FaServer, FaTools } from 'react-icons/fa';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaNodeJs, FaShieldAlt, FaKey, FaTimes, FaThLarge, FaCode } from 'react-icons/fa';
 import { SiTailwindcss, SiNextdotjs, SiExpress, SiMongodb, SiVite, SiTypescript, SiStripe, SiVercel, SiNetlify } from 'react-icons/si';
 import { TbApi } from 'react-icons/tb';
 
@@ -121,27 +121,25 @@ const Skills = () => {
         </div>
       </div>
 
-      <div className="relative w-full flex flex-col gap-4 overflow-hidden py-2">
+      <div className="relative w-full flex flex-col gap-4 overflow-hidden py-4">
         {/* Gradient Shadow Effect */}
         <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Right to Left (Independent Hover Pause) */}
-        <div 
-          className="flex overflow-x-hidden"
-          onMouseEnter={() => setIsHovered1(true)}
-          onMouseLeave={() => setIsHovered1(false)}
-        >
+        {/* Row 1: Right to Left (Strict Hover on inner track only) */}
+        <div className="flex overflow-x-hidden py-1">
           <motion.div
             animate={{ x: isHovered1 ? "0%" : "-50%" }}
             style={{ x: isHovered1 ? undefined : "0%" }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap"
+            className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap w-max"
           >
             {[...row1Skills, ...row1Skills].map((skill, index) => (
               <div
                 key={index}
-                className="flex items-center gap-2.5 sm:gap-3 px-3.5 py-2.5 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-cyan-500 transition-colors shrink-0"
+                onMouseEnter={() => setIsHovered1(true)}
+                onMouseLeave={() => setIsHovered1(false)}
+                className="flex items-center gap-2.5 sm:gap-3 px-3.5 py-2.5 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-cyan-500 transition-colors shrink-0 cursor-pointer"
               >
                 <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-slate-50 dark:bg-slate-950 shadow-xs">
                   {skill.icon}
@@ -154,22 +152,20 @@ const Skills = () => {
           </motion.div>
         </div>
 
-        {/* Row 2: Left to Right (Independent Hover Pause) */}
-        <div 
-          className="flex overflow-x-hidden"
-          onMouseEnter={() => setIsHovered2(true)}
-          onMouseLeave={() => setIsHovered2(false)}
-        >
+        {/* Row 2: Left to Right (Strict Hover on inner track only) */}
+        <div className="flex overflow-x-hidden py-1">
           <motion.div
             animate={{ x: isHovered2 ? "-50%" : "0%" }}
             style={{ x: isHovered2 ? undefined : "-50%" }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap"
+            className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap w-max"
           >
             {[...row2Skills, ...row2Skills].map((skill, index) => (
               <div
                 key={index}
-                className="flex items-center gap-2.5 sm:gap-3 px-3.5 py-2.5 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-cyan-500 transition-colors shrink-0"
+                onMouseEnter={() => setIsHovered2(true)}
+                onMouseLeave={() => setIsHovered2(false)}
+                className="flex items-center gap-2.5 sm:gap-3 px-3.5 py-2.5 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-cyan-500 transition-colors shrink-0 cursor-pointer"
               >
                 <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-slate-50 dark:bg-slate-950 shadow-xs">
                   {skill.icon}
@@ -208,14 +204,13 @@ const Skills = () => {
                 </button>
               </div>
 
-              {/* Modal Body with Drop Animation & 2/Multi-divisions */}
+              {/* Modal Body with Drop Animation & Divisions */}
               <motion.div 
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
                 className="p-6 sm:p-8 overflow-y-auto space-y-8"
               >
-                
                 {/* Section 1: Frontend & Styling */}
                 <div>
                   <h4 className="text-lg font-bold text-cyan-500 mb-4 flex items-center gap-2">
