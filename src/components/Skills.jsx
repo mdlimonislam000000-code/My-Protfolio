@@ -62,7 +62,7 @@ const toolsDevSkills = [
   { name: 'Netlify', icon: <SiNetlify className="text-teal-500 text-2xl" /> },
 ];
 
-// Modal item drop animation variants
+// Modal container and rain-drop item animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -81,7 +81,7 @@ const itemDropVariants = {
   }
 };
 
-// Spotlight Card Component with Mouse Following Effect
+// Spotlight Card Component with Rain Drop & Mouse Following Glowing Effect
 const SpotlightCard = ({ skill }) => {
   const cardRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -107,7 +107,7 @@ const SpotlightCard = ({ skill }) => {
       onMouseLeave={() => setIsHovered(false)}
       className="relative overflow-hidden flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 transition-all shadow-xs group cursor-pointer"
     >
-      {/* Spotlight Glowing Follower Effect */}
+      {/* Mouse Follower Glowing Effect */}
       {isHovered && (
         <div
           className="absolute pointer-events-none -inset-px rounded-2xl transition duration-300 z-0"
@@ -194,7 +194,7 @@ const Skills = () => {
         <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Right to Left (Exact Pause & Resume using CSS Animation) */}
+        {/* Row 1: Right to Left (Exact Pause & Resume) */}
         <div className="flex overflow-x-hidden py-1">
           <div
             className="animate-ticker-left gap-3 sm:gap-6 items-center flex-nowrap"
@@ -218,7 +218,7 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Row 2: Left to Right (Exact Pause & Resume using CSS Animation) */}
+        {/* Row 2: Left to Right (Exact Pause & Resume) */}
         <div className="flex overflow-x-hidden py-1">
           <div
             className="animate-ticker-right gap-3 sm:gap-6 items-center flex-nowrap"
@@ -268,7 +268,7 @@ const Skills = () => {
                 </button>
               </div>
 
-              {/* Modal Body with Drop Animation & Spotlight Cards */}
+              {/* Modal Body with Rain Drop Animation & Spotlight Cards */}
               <motion.div 
                 variants={containerVariants}
                 initial="hidden"
