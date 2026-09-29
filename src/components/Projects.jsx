@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const projectsData = [
- {
+  {
     id: 1,
     title: 'Manush Manuser Jonno - Blood Donate Society',
     description: 'A full-stack blood donation platform connecting seekers with verified donors instantly. Features secure Google auth, email verification via Nodemailer, emergency requests, donor search/filtering, and role-based access control with a fully responsive dark/light UI.',
@@ -113,7 +113,7 @@ const Projects = () => {
           />
 
           {/* ইনার মেইন কার্ড বডি */}
-          <div className="relative bg-slate-50 dark:bg-slate-950 rounded-[22px] overflow-hidden p-6 sm:p-8 z-10">
+          <div className="relative bg-slate-50 dark:bg-slate-950 rounded-[22px] overflow-hidden p-5 sm:p-8 z-10">
             
             <AnimatePresence mode="wait">
               <motion.div
@@ -125,7 +125,7 @@ const Projects = () => {
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
               >
                 {/* Project Image (Col Span: 6) */}
-                <div className="lg:col-span-6 relative h-64 sm:h-72 lg:h-80 rounded-2xl overflow-hidden bg-slate-200 dark:bg-slate-900 shadow-md">
+                <div className="lg:col-span-6 relative h-56 sm:h-72 lg:h-80 rounded-2xl overflow-hidden bg-slate-200 dark:bg-slate-900 shadow-md">
                   <img 
                     src={project.image} 
                     alt={project.title}
@@ -145,20 +145,20 @@ const Projects = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
                     {project.title}
                   </h3>
 
-                  <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                  <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-base leading-relaxed">
                     {project.description}
                   </p>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2 pt-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
                     {project.tags.map((tag, idx) => (
                       <span 
                         key={idx}
-                        className="text-xs font-medium px-2.5 py-1 rounded-md bg-slate-200/60 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-800"
+                        className="text-[11px] sm:text-xs font-medium px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-slate-200/60 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-800"
                       >
                         {tag}
                       </span>
@@ -166,24 +166,24 @@ const Projects = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex items-center gap-4 pt-4">
+                  <div className="flex flex-wrap items-center gap-3 pt-3">
                     <a
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 py-2.5 px-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-cyan-500 font-medium text-sm transition-all shadow-xs"
+                      className="flex items-center gap-2 py-2 px-4 sm:py-2.5 sm:px-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-cyan-500 font-medium text-xs sm:text-sm transition-all shadow-xs"
                     >
-                      <FaGithub size={18} />
+                      <FaGithub size={16} />
                       <span>Code</span>
                     </a>
                     <a
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 py-2.5 px-5 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold text-sm transition-all shadow-md hover:shadow-cyan-500/25"
+                      className="flex items-center gap-2 py-2 px-4 sm:py-2.5 sm:px-5 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-cyan-500/25"
                     >
                       <span>Live Preview</span>
-                      <FaExternalLinkAlt size={14} />
+                      <FaExternalLinkAlt size={12} />
                     </a>
                   </div>
 
@@ -191,24 +191,24 @@ const Projects = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation Control Buttons */}
-            <div className="flex items-center justify-between mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
+            {/* Navigation Control Buttons - Responsive Fix for Mobile View */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
               <button
                 onClick={prevProject}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-200/70 hover:bg-cyan-500 hover:text-white dark:bg-slate-900 dark:hover:bg-cyan-500 text-slate-800 dark:text-slate-200 font-medium text-sm transition-all cursor-pointer shadow-xs"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-200/70 hover:bg-cyan-500 hover:text-white dark:bg-slate-900 dark:hover:bg-cyan-500 text-slate-800 dark:text-slate-200 font-medium text-sm transition-all cursor-pointer shadow-xs"
               >
                 <FaChevronLeft size={14} />
                 <span>Previous</span>
               </button>
 
               {/* Dots Indicator */}
-              <div className="flex gap-2">
+              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
                 {projectsData.map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setCurrentIndex(idx)}
                     className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      currentIndex === idx ? 'w-8 bg-cyan-500' : 'w-2.5 bg-slate-300 dark:bg-slate-800'
+                      currentIndex === idx ? 'w-6 sm:w-8 bg-cyan-500' : 'w-2.5 bg-slate-300 dark:bg-slate-800'
                     }`}
                   />
                 ))}
@@ -216,7 +216,7 @@ const Projects = () => {
 
               <button
                 onClick={nextProject}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-200/70 hover:bg-cyan-500 hover:text-white dark:bg-slate-900 dark:hover:bg-cyan-500 text-slate-800 dark:text-slate-200 font-medium text-sm transition-all cursor-pointer shadow-xs"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-200/70 hover:bg-cyan-500 hover:text-white dark:bg-slate-900 dark:hover:bg-cyan-500 text-slate-800 dark:text-slate-200 font-medium text-sm transition-all cursor-pointer shadow-xs"
               >
                 <span>Next</span>
                 <FaChevronRight size={14} />
