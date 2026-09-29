@@ -161,15 +161,15 @@ const Skills = () => {
         }
       `}</style>
 
+      {/* Perfectly Aligned Section Header Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.6 }}
-            className="text-center sm:text-left"
+            className="text-left"
           >
             <span className="px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 text-xs sm:text-sm font-semibold tracking-wide">
               What I bring to the table
@@ -186,7 +186,7 @@ const Skills = () => {
             viewport={{ once: false }}
             transition={{ duration: 0.6, delay: 0.2 }}
             onClick={() => setShowAllModal(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-cyan-500/25 cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-cyan-500/25 cursor-pointer shrink-0"
           >
             <FaThLarge size={14} />
             <span>View All Skills</span>
