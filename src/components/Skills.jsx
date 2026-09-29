@@ -42,36 +42,37 @@ const skillsData = [
   },
 ];
 
-// মেইন কার্ড কন্টেইনার ভ্যারিয়েন্ট
+// Main container variant for smooth entry
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.15,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
+  hidden: { opacity: 0, y: 30, scale: 0.96 },
   visible: { 
     opacity: 1, 
+    y: 0, 
     scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" }
   },
 };
 
-// স্কিল আইটেমগুলোর জন্য উপর থেকে (আকাশ থেকে) নিচে পড়ার অ্যানিমেশন
+// Skills items akas theke (upor theke) niche porar jonno spring animation
 const skillItemVariants = {
-  hidden: { opacity: 0, y: -80, scale: 0.8 },
+  hidden: { opacity: 0, y: -90, scale: 0.5 },
   visible: { 
     opacity: 1, 
     y: 0, 
     scale: 1,
     transition: { 
       type: "spring", 
-      stiffness: 120, 
+      stiffness: 140, 
       damping: 12 
     }
   }
@@ -120,27 +121,27 @@ const Skills = () => {
                 variants={cardVariants}
                 className="relative group rounded-3xl p-[2px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
               >
-                {/* রটেটিং বর্ডার অ্যানিমেশন */}
+                {/* Rotating Border Animation */}
                 <motion.div 
                   animate={{ rotate: 360 }}
                   transition={{ duration: 5 + index, repeat: Infinity, ease: "linear" }}
                   className={`absolute inset-[-50%] ${gradients[index % gradients.length]} opacity-40 group-hover:opacity-100 transition-opacity`}
                 />
 
-                {/* মেইন কার্ড বডি */}
+                {/* Main Card Body */}
                 <div className="relative bg-white dark:bg-slate-900 p-6 rounded-[22px] z-10 h-full flex flex-col justify-between overflow-hidden">
                   <div>
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6 pb-2 border-b border-slate-100 dark:border-slate-800">
                       {categoryGroup.category}
                     </h3>
 
-                    {/* স্কিল আইটেমগুলো ওপর থেকে নিচে ড্রপ হবে */}
+                    {/* Skills Items Drop from Top (Sky) */}
                     <motion.div 
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: false }}
                       variants={{
-                        visible: { transition: { staggerChildren: 0.12 } }
+                        visible: { transition: { staggerChildren: 0.1 } }
                       }}
                       className="space-y-3"
                     >
@@ -152,9 +153,12 @@ const Skills = () => {
                           whileTap={{ scale: 0.98 }}
                           className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 cursor-pointer transition-colors duration-200 hover:border-cyan-500/50 hover:shadow-md"
                         >
-                          <div className="p-2 rounded-xl bg-white dark:bg-slate-900 shadow-xs">
+                          <motion.div 
+                            whileHover={{ rotate: 15 }}
+                            className="p-2 rounded-xl bg-white dark:bg-slate-900 shadow-xs"
+                          >
                             {skill.icon}
-                          </div>
+                          </motion.div>
                           <span className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
                             {skill.name}
                           </span>
