@@ -1,7 +1,7 @@
 'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaNodeJs, FaShieldAlt, FaKey } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaNodeJs, FaShieldAlt, FaKey, FaTimes, FaThLarge } from 'react-icons/fa';
 import { SiTailwindcss, SiNextdotjs, SiExpress, SiMongodb, SiVite } from 'react-icons/si';
 
 const row1Skills = [
@@ -25,25 +25,46 @@ const row2Skills = [
   { name: 'Vite', icon: <SiVite className="text-purple-500 text-xl sm:text-3xl" /> },
 ];
 
+const allSkillsCombined = [...row1Skills, ...row2Skills];
+
 const Skills = () => {
+  const [isHovered1, setIsHovered1] = useState(false);
+  const [isHovered2, setIsHovered2] = useState(false);
+  const [showAllModal, setShowAllModal] = useState(false);
+
   return (
     <section id="skills" className="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
         {/* Section Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <span className="px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 text-xs sm:text-sm font-semibold tracking-wide">
-            What I bring to the table
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-3">
-            My <span className="text-cyan-500">Skills</span>
-          </h2>
-        </motion.div>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6 }}
+            className="text-center sm:text-left"
+          >
+            <span className="px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 text-xs sm:text-sm font-semibold tracking-wide">
+              What I bring to the table
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-3">
+              My <span className="text-cyan-500">Skills</span>
+            </h2>
+          </motion.div>
+
+          {/* View All Button */}
+          <motion.button
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            onClick={() => setShowAllModal(true)}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-cyan-500/25 cursor-pointer"
+          >
+            <FaThLarge size={14} />
+            <span>View All Skills</span>
+          </motion.button>
+        </div>
       </div>
 
       <div className="relative w-full flex flex-col gap-4 overflow-hidden py-2">
@@ -51,10 +72,15 @@ const Skills = () => {
         <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Right to Left */}
-        <div className="flex overflow-x-hidden">
+        {/* Row 1: Right to Left (Hover Pause Enabled) */}
+        <div 
+          className="flex overflow-x-hidden"
+          onMouseEnter={() => setIsHovered1(true)}
+          onMouseLeave={() => setIsHovered1(false)}
+        >
           <motion.div
-            animate={{ x: ["0%", "-50%"] }}
+            animate={{ x: isHovered1 ? "0%" : "-50%" }}
+            style={{ x: isHovered1 ? undefined : "0%" }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap"
           >
@@ -74,10 +100,15 @@ const Skills = () => {
           </motion.div>
         </div>
 
-        {/* Row 2: Left to Right */}
-        <div className="flex overflow-x-hidden">
+        {/* Row 2: Left to Right (Hover Pause Enabled) */}
+        <div 
+          className="flex overflow-x-hidden"
+          onMouseEnter={() => setIsHovered2(true)}
+          onMouseLeave={() => setIsHovered2(false)}
+        >
           <motion.div
-            animate={{ x: ["-50%", "0%"] }}
+            animate={{ x: isHovered2 ? "-50%" : "0%" }}
+            style={{ x: isHovered2 ? undefined : "-50%" }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap"
           >
@@ -98,6 +129,50 @@ const Skills = () => {
         </div>
 
       </div>
+
+      {/* View All Skills Modal */}
+      <AnimatePresence>
+        {showAllModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-3xl bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[90vh] overflow-y-auto"
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-200 dark:border-slate-800">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                  All My <span className="text-cyan-500">Skills</span>
+                </h3>
+                <button 
+                  onClick={() => setShowAllModal(false)}
+                  className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-cyan-500 hover:text-white transition-colors cursor-pointer"
+                >
+                  <FaTimes size={18} />
+                </button>
+              </div>
+
+              {/* Skills Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {allSkillsCombined.map((skill, index) => (
+                  <div 
+                    key={index}
+                    className="flex flex-col items-center justify-center p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 transition-all group"
+                  >
+                    <div className="p-3 rounded-xl bg-white dark:bg-slate-900 shadow-sm mb-2 group-hover:scale-110 transition-transform">
+                      {skill.icon}
+                    </div>
+                    <span className="font-semibold text-slate-800 dark:text-slate-200 text-xs sm:text-sm text-center">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
