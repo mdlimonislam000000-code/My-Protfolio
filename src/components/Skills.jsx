@@ -83,43 +83,39 @@ const itemDropVariants = {
 
 // Spotlight Card Component with Mouse Following Effect
 const SpotlightCard = ({ skill }) => {
-  const divRef = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
+  const cardRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e) => {
-    if (!divRef.current) return;
-    const rect = divRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
-  const handleMouseEnter = () => {
-    setOpacity(1);
-  };
-
-  const handleMouseLeave = () => {
-    setOpacity(0);
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
   };
 
   return (
     <motion.div
-      ref={divRef}
+      ref={cardRef}
       variants={itemDropVariants}
       whileHover={{ scale: 1.05, y: -4 }}
       whileTap={{ scale: 0.97 }}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className="relative overflow-hidden flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 transition-all shadow-xs group cursor-pointer"
     >
-      {/* Mouse Follower Glow Effect */}
-      <div
-        className="absolute pointer-events-none -inset-px rounded-2xl transition duration-300"
-        style={{
-          opacity,
-          background: `radial-gradient(120px circle at ${position.x}px ${position.y}px, rgba(6, 182, 212, 0.25), transparent 80%)`,
-        }}
-      />
+      {/* Spotlight Glowing Follower Effect */}
+      {isHovered && (
+        <div
+          className="absolute pointer-events-none -inset-px rounded-2xl transition duration-300 z-0"
+          style={{
+            background: `radial-gradient(120px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(6, 182, 212, 0.35), transparent 80%)`,
+          }}
+        />
+      )}
       
       <div className="relative z-10 p-2 rounded-xl bg-white dark:bg-slate-900 shadow-xs group-hover:rotate-6 transition-transform">
         {skill.icon}
@@ -176,12 +172,12 @@ const Skills = () => {
         <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Right to Left (Paused at exact hover position) */}
+        {/* Row 1: Right to Left (Exact Pause & Resume) */}
         <div className="flex overflow-x-hidden py-1">
           <motion.div
-            animate={{ x: isHovered1 ? undefined : ["0%", "-50%"] }}
-            style={{ animationPlayState: isHovered1 ? 'paused' : 'running' }}
+            animate={{ x: ["0%", "-50%"] }}
             transition={{ x: { duration: 25, repeat: Infinity, ease: "linear" } }}
+            style={{ animationPlayState: isHovered1 ? 'paused' : 'running' }}
             className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap w-max"
           >
             {[...row1Skills, ...row1Skills].map((skill, index) => (
@@ -202,12 +198,12 @@ const Skills = () => {
           </motion.div>
         </div>
 
-        {/* Row 2: Left to Right (Paused at exact hover position) */}
+        {/* Row 2: Left to Right (Exact Pause & Resume) */}
         <div className="flex overflow-x-hidden py-1">
           <motion.div
-            animate={{ x: isHovered2 ? undefined : ["-50%", "0%"] }}
-            style={{ animationPlayState: isHovered2 ? 'paused' : 'running' }}
+            animate={{ x: ["-50%", "0%"] }}
             transition={{ x: { duration: 25, repeat: Infinity, ease: "linear" } }}
+            style={{ animationPlayState: isHovered2 ? 'paused' : 'running' }}
             className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap w-max"
           >
             {[...row2Skills, ...row2Skills].map((skill, index) => (
