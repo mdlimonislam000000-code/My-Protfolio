@@ -62,26 +62,26 @@ const toolsDevSkills = [
   { name: 'Netlify', icon: <SiNetlify className="text-teal-500 text-2xl" /> },
 ];
 
-// Modal container and rain-drop item animation variants
+// Rain-drop animation variants for modal cards
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.08 }
+    transition: { staggerChildren: 0.06 }
   }
 };
 
 const itemDropVariants = {
-  hidden: { opacity: 0, y: -40, scale: 0.8 },
+  hidden: { opacity: 0, y: -50, scale: 0.8 },
   visible: { 
     opacity: 1, 
     y: 0, 
     scale: 1,
-    transition: { type: "spring", stiffness: 200, damping: 15 }
+    transition: { type: "spring", stiffness: 220, damping: 16 }
   }
 };
 
-// Spotlight Card Component with Rain Drop & Mouse Following Glowing Effect
+// Spotlight Card with Mouse Follower & Glowing Border
 const SpotlightCard = ({ skill }) => {
   const cardRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -100,27 +100,32 @@ const SpotlightCard = ({ skill }) => {
     <motion.div
       ref={cardRef}
       variants={itemDropVariants}
-      whileHover={{ scale: 1.05, y: -4 }}
-      whileTap={{ scale: 0.97 }}
+      whileHover={{ scale: 1.03, y: -3 }}
+      whileTap={{ scale: 0.98 }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative overflow-hidden flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 transition-all shadow-xs group cursor-pointer"
+      className="relative overflow-hidden flex items-center gap-3 p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 transition-all shadow-md group cursor-pointer"
     >
-      {/* Mouse Follower Glowing Effect */}
+      {/* Dynamic Mouse Follower Spotlight Background & Border Glow */}
       {isHovered && (
-        <div
-          className="absolute pointer-events-none -inset-px rounded-2xl transition duration-300 z-0"
-          style={{
-            background: `radial-gradient(120px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(6, 182, 212, 0.35), transparent 80%)`,
-          }}
-        />
+        <>
+          <div
+            className="absolute pointer-events-none inset-0 rounded-2xl transition duration-300 z-0"
+            style={{
+              background: `radial-gradient(150px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(6, 182, 212, 0.25), transparent 70%)`,
+            }}
+          />
+          <div
+            className="absolute pointer-events-none inset-0 rounded-2xl transition duration-300 z-0 border border-cyan-500/80 shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+          />
+        </>
       )}
       
-      <div className="relative z-10 p-2 rounded-xl bg-white dark:bg-slate-900 shadow-xs group-hover:rotate-6 transition-transform">
+      <div className="relative z-10 p-2 rounded-xl bg-slate-950 shadow-xs group-hover:rotate-6 transition-transform">
         {skill.icon}
       </div>
-      <span className="relative z-10 font-semibold text-slate-800 dark:text-slate-200 text-xs sm:text-sm">
+      <span className="relative z-10 font-semibold text-slate-200 text-xs sm:text-sm">
         {skill.name}
       </span>
     </motion.div>
@@ -194,7 +199,7 @@ const Skills = () => {
         <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Right to Left (Exact Pause & Resume) */}
+        {/* Row 1 */}
         <div className="flex overflow-x-hidden py-1">
           <div
             className="animate-ticker-left gap-3 sm:gap-6 items-center flex-nowrap"
@@ -218,7 +223,7 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Row 2: Left to Right (Exact Pause & Resume) */}
+        {/* Row 2 */}
         <div className="flex overflow-x-hidden py-1">
           <div
             className="animate-ticker-right gap-3 sm:gap-6 items-center flex-nowrap"
@@ -253,32 +258,32 @@ const Skills = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 30 }}
               transition={{ duration: 0.3, type: "spring", damping: 20, stiffness: 300 }}
-              className="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[85vh] flex flex-col overflow-hidden"
+              className="relative w-full max-w-4xl bg-slate-900 rounded-3xl shadow-2xl border border-slate-800 max-h-[85vh] flex flex-col overflow-hidden"
             >
               {/* Sticky Modal Header */}
-              <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+              <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
                   All My <span className="text-cyan-500">Skills</span>
                 </h3>
                 <button 
                   onClick={() => setShowAllModal(false)}
-                  className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-cyan-500 hover:text-white transition-all cursor-pointer shadow-xs"
+                  className="p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all cursor-pointer shadow-xs"
                 >
                   <FaTimes size={18} />
                 </button>
               </div>
 
-              {/* Modal Body with Rain Drop Animation & Spotlight Cards */}
+              {/* Modal Body */}
               <motion.div 
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
                 className="p-6 sm:p-8 overflow-y-auto space-y-8"
               >
-                {/* Section 1: Frontend & Styling */}
+                {/* Section 1 */}
                 <div>
-                  <h4 className="text-lg font-bold text-cyan-500 mb-4 flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 inline-block animate-pulse"></span>
+                  <h4 className="text-lg font-bold text-cyan-400 mb-4 flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 inline-block animate-pulse"></span>
                     Frontend & Styling Libraries
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -288,12 +293,12 @@ const Skills = () => {
                   </div>
                 </div>
 
-                <hr className="border-slate-200 dark:border-slate-800" />
+                <hr className="border-slate-800" />
 
-                {/* Section 2: Backend, Auth & Tools */}
+                {/* Section 2 */}
                 <div>
-                  <h4 className="text-lg font-bold text-emerald-500 mb-4 flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                  <h4 className="text-lg font-bold text-emerald-400 mb-4 flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
                     Backend, Database, Auth & Tools
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
