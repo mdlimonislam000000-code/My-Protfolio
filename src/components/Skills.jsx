@@ -126,12 +126,15 @@ const Skills = () => {
         <div className="absolute left-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 inset-y-0 w-12 sm:w-20 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Right to Left (Strict Hover on inner track only) */}
+        {/* Row 1: Right to Left */}
         <div className="flex overflow-x-hidden py-1">
           <motion.div
-            animate={{ x: isHovered1 ? "0%" : "-50%" }}
-            style={{ x: isHovered1 ? undefined : "0%" }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            animate={isHovered1 ? { x: 0 } : { x: ["0%", "-50%"] }}
+            transition={
+              isHovered1 
+                ? { duration: 0 } 
+                : { x: { duration: 25, repeat: Infinity, ease: "linear" } }
+            }
             className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap w-max"
           >
             {[...row1Skills, ...row1Skills].map((skill, index) => (
@@ -152,12 +155,15 @@ const Skills = () => {
           </motion.div>
         </div>
 
-        {/* Row 2: Left to Right (Strict Hover on inner track only) */}
+        {/* Row 2: Left to Right */}
         <div className="flex overflow-x-hidden py-1">
           <motion.div
-            animate={{ x: isHovered2 ? "-50%" : "0%" }}
-            style={{ x: isHovered2 ? undefined : "-50%" }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            animate={isHovered2 ? { x: 0 } : { x: ["-50%", "0%"] }}
+            transition={
+              isHovered2 
+                ? { duration: 0 } 
+                : { x: { duration: 25, repeat: Infinity, ease: "linear" } }
+            }
             className="flex gap-3 sm:gap-6 whitespace-nowrap items-center flex-nowrap w-max"
           >
             {[...row2Skills, ...row2Skills].map((skill, index) => (
