@@ -124,7 +124,7 @@ const Projects = () => {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
               >
-                {/* Project Image (Col Span: 6) */}
+                {/* Project Image */}
                 <div className="lg:col-span-6 relative h-56 sm:h-72 lg:h-80 rounded-2xl overflow-hidden bg-slate-200 dark:bg-slate-900 shadow-md">
                   <img 
                     src={project.image} 
@@ -137,7 +137,7 @@ const Projects = () => {
                   />
                 </div>
 
-                {/* Project Details (Col Span: 6) */}
+                {/* Project Details */}
                 <div className="lg:col-span-6 space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-950/50 px-3 py-1 rounded-lg border border-cyan-100 dark:border-cyan-900/40">
@@ -191,14 +191,23 @@ const Projects = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation Control Buttons - Responsive Fix for Mobile View */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
+            {/* Navigation Controls with Glowing Icon Animation */}
+            <div className="flex items-center justify-between mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
+              
+              {/* Previous Button (Icon Only with Glow Animation) */}
               <button
                 onClick={prevProject}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-200/70 hover:bg-cyan-500 hover:text-white dark:bg-slate-900 dark:hover:bg-cyan-500 text-slate-800 dark:text-slate-200 font-medium text-sm transition-all cursor-pointer shadow-xs"
+                className="p-3 rounded-xl bg-slate-200/70 dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-cyan-500 hover:text-white transition-all cursor-pointer shadow-xs group/btn"
+                title="Previous Project"
               >
-                <FaChevronLeft size={14} />
-                <span>Previous</span>
+                <motion.div
+                  animate={{ 
+                    filter: ["drop-shadow(0 0 2px rgba(6,182,212,0.4))", "drop-shadow(0 0 8px rgba(6,182,212,0.9))", "drop-shadow(0 0 2px rgba(6,182,212,0.4))"] 
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <FaChevronLeft size={16} className="text-cyan-500 group-hover/btn:text-white transition-colors" />
+                </motion.div>
               </button>
 
               {/* Dots Indicator */}
@@ -214,13 +223,22 @@ const Projects = () => {
                 ))}
               </div>
 
+              {/* Next Button (Icon Only with Glow Animation) */}
               <button
                 onClick={nextProject}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-200/70 hover:bg-cyan-500 hover:text-white dark:bg-slate-900 dark:hover:bg-cyan-500 text-slate-800 dark:text-slate-200 font-medium text-sm transition-all cursor-pointer shadow-xs"
+                className="p-3 rounded-xl bg-slate-200/70 dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-cyan-500 hover:text-white transition-all cursor-pointer shadow-xs group/btn"
+                title="Next Project"
               >
-                <span>Next</span>
-                <FaChevronRight size={14} />
+                <motion.div
+                  animate={{ 
+                    filter: ["drop-shadow(0 0 2px rgba(6,182,212,0.4))", "drop-shadow(0 0 8px rgba(6,182,212,0.9))", "drop-shadow(0 0 2px rgba(6,182,212,0.4))"] 
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <FaChevronRight size={16} className="text-cyan-500 group-hover/btn:text-white transition-colors" />
+                </motion.div>
               </button>
+
             </div>
 
           </div>
