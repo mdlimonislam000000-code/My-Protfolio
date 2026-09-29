@@ -42,26 +42,39 @@ const skillsData = [
   },
 ];
 
-// Parent container variant for staggered children animation
+// মেইন কার্ড কন্টেইনার ভ্যারিয়েন্ট
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.1,
     },
   },
 };
 
-// Individual card variant
 const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" }
+  },
+};
+
+// স্কিল আইটেমগুলোর জন্য উপর থেকে (আকাশ থেকে) নিচে পড়ার অ্যানিমেশন
+const skillItemVariants = {
+  hidden: { opacity: 0, y: -80, scale: 0.8 },
   visible: { 
     opacity: 1, 
     y: 0, 
     scale: 1,
-    transition: { duration: 0.6, ease: "easeOut" }
-  },
+    transition: { 
+      type: "spring", 
+      stiffness: 120, 
+      damping: 12 
+    }
+  }
 };
 
 const Skills = () => {
@@ -85,7 +98,7 @@ const Skills = () => {
           </h2>
         </motion.div>
 
-        {/* Skills Categories Grid with Staggered Animation */}
+        {/* Skills Categories Grid */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -105,7 +118,7 @@ const Skills = () => {
               <motion.div
                 key={categoryGroup.category}
                 variants={cardVariants}
-                className="relative group rounded-3xl p-[2px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="relative group rounded-3xl p-[2px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
               >
                 {/* রটেটিং বর্ডার অ্যানিমেশন */}
                 <motion.div 
@@ -115,17 +128,29 @@ const Skills = () => {
                 />
 
                 {/* মেইন কার্ড বডি */}
-                <div className="relative bg-white dark:bg-slate-900 p-6 rounded-[22px] z-10 h-full flex flex-col justify-between">
+                <div className="relative bg-white dark:bg-slate-900 p-6 rounded-[22px] z-10 h-full flex flex-col justify-between overflow-hidden">
                   <div>
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6 pb-2 border-b border-slate-100 dark:border-slate-800">
                       {categoryGroup.category}
                     </h3>
 
-                    <div className="space-y-4">
+                    {/* স্কিল আইটেমগুলো ওপর থেকে নিচে ড্রপ হবে */}
+                    <motion.div 
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: false }}
+                      variants={{
+                        visible: { transition: { staggerChildren: 0.12 } }
+                      }}
+                      className="space-y-3"
+                    >
                       {categoryGroup.skills.map((skill) => (
-                        <div 
+                        <motion.div 
                           key={skill.name}
-                          className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 hover:scale-[1.02] transition-transform duration-200"
+                          variants={skillItemVariants}
+                          whileHover={{ scale: 1.04, x: 4 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 cursor-pointer transition-colors duration-200 hover:border-cyan-500/50 hover:shadow-md"
                         >
                           <div className="p-2 rounded-xl bg-white dark:bg-slate-900 shadow-xs">
                             {skill.icon}
@@ -133,9 +158,9 @@ const Skills = () => {
                           <span className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
                             {skill.name}
                           </span>
-                        </div>
+                        </motion.div>
                       ))}
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
 
